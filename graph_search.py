@@ -209,6 +209,7 @@ def match_iter(instrs, graph, slices=10):  # Iteratively try to find a match
         return matches[0][1]
     elif not matches:  # No match anywhere
         return None
+    return None
     potential = {t[1] for t in matches}  # All potential matches
     for _ in range(slices):  # Slice the list randomly and search for matches
         start = random.randint(1, len(instrs))
@@ -229,8 +230,8 @@ def match_iter(instrs, graph, slices=10):  # Iteratively try to find a match
     return None
 
 
-def match_loop(rom: str, unknown, known: dict, graph) -> Dict[str, str]:  # Interactive
-    rv_known = {addr: name for name, (addr, size) in known.items()}
+def match_loop(rom: str, unknown, jp_known, us_known: dict, graph) -> Dict[str, str]:  # Interactive
+    rv_known = {addr: name for name, (addr, size) in us_known.items() if name not in jp_known}
     print(f'Pool: {len(rv_known)}')
     keys = list(unknown.keys())
     random.shuffle(keys)
@@ -290,17 +291,18 @@ def replace_names(asm_path: str, replace: Dict[str, str]):  # Replace lines
 
 
 JP_MAP = 'pokeemeraldjp.map'
-JP_ASM = os.path.join('asm', 'code.s')
+JP_ASM = os.path.join('asm', 'rom.s')
 US_ELF = os.path.join('..', 'pokeemerald', 'pokeemerald.elf')
 US_ROM = os.path.join('..', 'pokeemerald', 'pokeemerald.gba')
-JP_ROM = 'pokeemeraldjp.gba'
+JP_ROM = 'pokeemerald_jp.gba'
 JP_ELF = 'pokeemerald_jp.elf'
 
 
 if __name__ == '__main__':
     jp_unknown = elf_funcs(JP_ELF, True)
+    jp_known = elf_funcs(JP_ELF, False)
     us_funcs = elf_funcs(US_ELF, None)  # ALL functions, including unknown ones
     graph = build_graph(US_ROM, us_funcs)  # Build instruction graph
-    replace = match_loop(JP_ROM, jp_unknown, us_funcs, graph)
+    replace = match_loop(JP_ROM, jp_unknown, jp_known, us_funcs, graph)
     if replace:
         replace_names(JP_ASM, replace)
