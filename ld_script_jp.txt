@@ -1,0 +1,130 @@
+SECTIONS {
+    . = 0x2000000;
+    ewram (NOLOAD) :
+    ALIGN(4)
+    {
+        INCLUDE "sym_ewram_jp.txt"
+    }
+    . = 0x3000000;
+    iwram (NOLOAD) :
+    ALIGN(4)
+    {
+        INCLUDE "sym_iwram_jp.txt"
+    }
+    . = 0x8000000;
+    .text :
+    ALIGN(4)
+    {
+        asm/rom.o(.text);
+    } =0
+    script_data :
+    ALIGN(4)
+    {
+        data/event_scripts.o(script_data);
+    } =0
+    libtext :
+    ALIGN(4)
+    {
+		asm/libgcnmultiboot.o(.text);
+		asm/m4a.o(.text);
+		asm/agb_flash.o(.text);
+		asm/siirtc.o(.text);
+		asm/librfu_stwi.o(.text);
+		asm/librfu_intr.o(.text);
+		asm/librfu_rfu.o(.text);
+		asm/librfu.o(.text);
+		asm/libisagbprn.o(.text);
+		asm/libagbsyscall.o(.text);
+		asm/libgcc.o(.text);
+		asm/libc.o(.text);
+		/*
+		*libgcc.a:_call_via_rX.o(.text);
+		*libgcc.a:_divdi3.o(.text);
+		*libgcc.a:_divsi3.o(.text);
+		*libgcc.a:_dvmd_tls.o(.text);
+		*libgcc.a:_fixunsdfsi.o(.text);
+		*libgcc.a:_fixunssfsi.o(.text);
+		*libgcc.a:_modsi3.o(.text);
+		*libgcc.a:_muldi3.o(.text);
+		*libgcc.a:_udivdi3.o(.text);
+		*libgcc.a:_udivsi3.o(.text);
+		*libgcc.a:_umodsi3.o(.text);
+		*libgcc.a:dp-bit.o(.text);
+		*libgcc.a:fp-bit.o(.text);
+		*libgcc.a:_lshrdi3.o(.text);
+		*libgcc.a:_negdi2.o(.text);
+		*libc.a:memcpy.o(.text);
+		*libc.a:memset.o(.text);
+		*libc.a:strcmp.o(.text);
+		*libc.a:strcpy.o(.text);
+        *libc.a:impure.o(.text);
+        *libc.a:vsprintf.o(.text);
+        *libc.a:vfprintf.o(.text);
+        *libc.a:wsetup.o(.text);
+        *libc.a:dtoa.o(.text);
+        *libc.a:fflush.o(.text);
+        *libc.a:findfp.o(.text);
+        *libc.a:freer.o(.text);
+        *libc.a:mtrim.o(.text);
+        *libc.a:fvwrite.o(.text);
+        *libc.a:fwalk.o(.text);
+        *libc.a:locale.o(.text);
+        *libc.a:makebuf.o(.text);
+        *libc.a:mallocr.o(.text);
+        *libc.a:mbtowc_r.o(.text);
+        *libc.a:memchr.o(.text);
+        *libc.a:memmove.o(.text);
+        *libc.a:mlock.o(.text);
+        *libc.a:mprec.o(.text);
+        *libc.a:s_isinf.o(.text);
+        *libc.a:s_isnan.o(.text);
+        *libc.a:sbrkr.o(.text);
+        *libc.a:stdio.o(.text);
+        *libc.a:strlen.o(.text);
+        *libc.a:syscalls.o(.text);
+        *libc.a:writer.o(.text);
+        *libc.a:callocr.o(.text);
+        *libc.a:closer.o(.text);
+        *libc.a:errno.o(.text);
+        *libc.a:fstatr.o(.text);
+        *libc.a:libcfunc.o(.text);
+        *libc.a:lseekr.o(.text);
+        *libc.a:readr.o(.text);
+		*/
+    } =0
+    .rodata :
+    ALIGN(4)
+    {
+        data/data.o(.rodata);
+    } =0
+    /* DWARF debug sections.
+    Symbols in the DWARF debugging sections are relative to the beginning
+    of the section so we begin them at 0.  */
+
+    /* DWARF 1 */
+    .debug          0 : { *(.debug) }
+    .line           0 : { *(.line) }
+
+    /* GNU DWARF 1 extensions */
+    .debug_srcinfo  0 : { *(.debug_srcinfo) }
+    .debug_sfnames  0 : { *(.debug_sfnames) }
+
+    /* DWARF 1.1 and DWARF 2 */
+    .debug_aranges  0 : { *(.debug_aranges) }
+    .debug_pubnames 0 : { *(.debug_pubnames) }
+
+    /* DWARF 2 */
+    .debug_info     0 : { *(.debug_info .gnu.linkonce.wi.*) }
+    .debug_abbrev   0 : { *(.debug_abbrev) }
+    .debug_line     0 : { *(.debug_line) }
+    .debug_frame    0 : { *(.debug_frame) }
+    .debug_str      0 : { *(.debug_str) }
+    .debug_loc      0 : { *(.debug_loc) }
+    .debug_macinfo  0 : { *(.debug_macinfo) }
+
+    /* Discard everything not specifically mentioned above. */
+    /DISCARD/ :
+    {
+        *(*);
+    }
+}
