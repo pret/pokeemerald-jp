@@ -1,7 +1,7 @@
-    .include "asm/macros.inc"
-    .include "constants/constants.inc"
-	.text
-    .syntax unified
+.include "asm/macros.inc"
+.include "constants/constants.inc"
+.text
+.syntax unified
 
 	thumb_func_start _call_via_r0
 _call_via_r0: @ 0x08295A08
@@ -250,7 +250,7 @@ _08295B62:
 	b _08295E42
 	.align 2, 0
 _08295B6C: .4byte 0x00FFFFFF
-_08295B70: .4byte gUnknown_890EF58
+_08295B70: .4byte 0x0890EF58
 _08295B74: .4byte 0x0000FFFF
 _08295B78:
 	cmp r2, #0
@@ -295,7 +295,7 @@ _08295BA6:
 	b _08295C6A
 	.align 2, 0
 _08295BC4: .4byte 0x00FFFFFF
-_08295BC8: .4byte gUnknown_890EF58
+_08295BC8: .4byte 0x0890EF58
 _08295BCC:
 	subs r1, r1, r2
 	lsls r7, r2
@@ -483,7 +483,7 @@ _08295D34:
 	b _08295E3C
 	.align 2, 0
 _08295D3C: .4byte 0x00FFFFFF
-_08295D40: .4byte gUnknown_890EF58
+_08295D40: .4byte 0x0890EF58
 _08295D44:
 	movs r6, #0
 	b _08295E3E
@@ -1109,7 +1109,7 @@ _082961AA:
 	b _08296336
 	.align 2, 0
 _082961B0: .4byte 0x00FFFFFF
-_082961B4: .4byte gUnknown_890F058
+_082961B4: .4byte 0x0890F058
 _082961B8: .4byte 0x0000FFFF
 _082961BC:
 	cmp r2, #0
@@ -1154,7 +1154,7 @@ _082961EA:
 	b _082962AE
 	.align 2, 0
 _08296208: .4byte 0x00FFFFFF
-_0829620C: .4byte gUnknown_890F058
+_0829620C: .4byte 0x0890F058
 _08296210:
 	subs r1, r1, r2
 	lsls r7, r2
@@ -1343,7 +1343,7 @@ _08296378:
 	b _08296480
 	.align 2, 0
 _08296380: .4byte 0x00FFFFFF
-_08296384: .4byte gUnknown_890F058
+_08296384: .4byte 0x0890F058
 _08296388:
 	movs r6, #0
 	b _08296482
@@ -2019,7 +2019,7 @@ _0829683E:
 	ldr r0, _08296850
 	b _08296A54
 	.align 2, 0
-_08296850: .4byte gUnknown_3001A78
+_08296850: .4byte 0x03001A78
 _08296854:
 	movs r1, #0
 	cmp r0, #4
@@ -2436,7 +2436,7 @@ _08296B4A:
 	ldr r0, _08296B50
 	b _08296D52
 	.align 2, 0
-_08296B50: .4byte gUnknown_3001A78
+_08296B50: .4byte 0x03001A78
 _08296B54:
 	mov r1, r8
 	ldr r0, [r1, #4]
@@ -2790,7 +2790,7 @@ _08296DE4:
 	ldr r1, _08296DE8
 	b _08296EE8
 	.align 2, 0
-_08296DE8: .4byte gUnknown_3001A78
+_08296DE8: .4byte 0x03001A78
 _08296DEC:
 	movs r0, #0
 	cmp r2, #4
@@ -3835,7 +3835,7 @@ _082974E8:
 	ldr r0, _082974F8
 	b _0829761C
 	.align 2, 0
-_082974F8: .4byte gUnknown_3001A90
+_082974F8: .4byte 0x03001A90
 _082974FC:
 	movs r1, #0
 	cmp r0, #4
@@ -4131,7 +4131,7 @@ _082976FE:
 	ldr r0, _08297704
 	b _082977D6
 	.align 2, 0
-_08297704: .4byte gUnknown_3001A90
+_08297704: .4byte 0x03001A90
 _08297708:
 	movs r2, #0
 	cmp r1, #2
@@ -4324,7 +4324,7 @@ _0829784A:
 	ldr r1, _08297858
 	b _082978C8
 	.align 2, 0
-_08297858: .4byte gUnknown_3001A90
+_08297858: .4byte 0x03001A90
 _0829785C:
 	movs r1, #0
 	cmp r2, #4
@@ -5044,3 +5044,4 @@ _08297D02:
 	pop {r4, pc}
 	.align 2, 0
 	thumb_func_end __negdi2
+

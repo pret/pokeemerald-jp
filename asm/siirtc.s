@@ -1,13 +1,13 @@
-    .include "asm/macros.inc"
-    .include "constants/constants.inc"
-	.text
-    .syntax unified
+.include "asm/macros.inc"
+.include "constants/constants.inc"
+.text
+.syntax unified
 
 	thumb_func_start SiiRtcUnprotect
 SiiRtcUnprotect: @ 0x082906D8
 	push {r7, lr}
 	mov r7, sp
-	bl sub_08290F78
+	bl EnableGpioPortRead
 	ldr r0, _082906EC
 	movs r1, #0
 	strb r1, [r0]
@@ -15,14 +15,14 @@ SiiRtcUnprotect: @ 0x082906D8
 	pop {r0}
 	bx r0
 	.align 2, 0
-_082906EC: .4byte gUnknown_3001A76
+_082906EC: .4byte 0x03001A76
 	thumb_func_end SiiRtcUnprotect
 
 	thumb_func_start SiiRtcProtect
 SiiRtcProtect: @ 0x082906F0
 	push {r7, lr}
 	mov r7, sp
-	bl sub_08290F8C
+	bl DisableGpioPortRead
 	ldr r0, _08290704
 	movs r1, #1
 	strb r1, [r0]
@@ -30,7 +30,7 @@ SiiRtcProtect: @ 0x082906F0
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08290704: .4byte gUnknown_3001A76
+_08290704: .4byte 0x03001A76
 	thumb_func_end SiiRtcProtect
 
 	thumb_func_start SiiRtcProbe
@@ -160,7 +160,7 @@ SiiRtcReset: @ 0x082907E0
 	movs r0, #0
 	b _0829085C
 	.align 2, 0
-_082907F4: .4byte gUnknown_3001A76
+_082907F4: .4byte 0x03001A76
 _082907F8:
 	ldr r0, _08290850
 	movs r1, #1
@@ -175,7 +175,7 @@ _082907F8:
 	movs r1, #7
 	strh r1, [r0]
 	movs r0, #0x60
-	bl sub_08290DA8
+	bl WriteCommand
 	ldr r0, _08290854
 	movs r1, #1
 	strh r1, [r0]
@@ -205,7 +205,7 @@ _082907F8:
 	adds r0, r1, #0
 	b _0829085C
 	.align 2, 0
-_08290850: .4byte gUnknown_3001A76
+_08290850: .4byte 0x03001A76
 _08290854: .4byte 0x080000C4
 _08290858: .4byte 0x080000C6
 _0829085C:
@@ -228,7 +228,7 @@ SiiRtcGetStatus: @ 0x08290864
 	movs r0, #0
 	b _08290928
 	.align 2, 0
-_08290878: .4byte gUnknown_3001A76
+_08290878: .4byte 0x03001A76
 _0829087C:
 	ldr r0, _0829091C
 	movs r1, #1
@@ -243,11 +243,11 @@ _0829087C:
 	movs r1, #7
 	strh r1, [r0]
 	movs r0, #0x63
-	bl sub_08290DA8
+	bl WriteCommand
 	ldr r0, _08290924
 	movs r1, #5
 	strh r1, [r0]
-	bl sub_08290EEC
+	bl ReadData
 	adds r1, r7, #4
 	strb r0, [r1]
 	ldr r0, [r7]
@@ -309,7 +309,7 @@ _0829087C:
 	movs r0, #1
 	b _08290928
 	.align 2, 0
-_0829091C: .4byte gUnknown_3001A76
+_0829091C: .4byte 0x03001A76
 _08290920: .4byte 0x080000C4
 _08290924: .4byte 0x080000C6
 _08290928:
@@ -332,7 +332,7 @@ SiiRtcSetStatus: @ 0x08290930
 	movs r0, #0
 	b _082909D0
 	.align 2, 0
-_08290944: .4byte gUnknown_3001A76
+_08290944: .4byte 0x03001A76
 _08290948:
 	ldr r0, _082909C4
 	movs r1, #1
@@ -377,11 +377,11 @@ _08290948:
 	movs r1, #7
 	strh r1, [r0]
 	movs r0, #0x62
-	bl sub_08290DA8
+	bl WriteCommand
 	adds r0, r7, #4
 	ldrb r1, [r0]
 	adds r0, r1, #0
-	bl sub_08290E4C
+	bl WriteData
 	ldr r0, _082909C8
 	movs r1, #1
 	strh r1, [r0]
@@ -394,7 +394,7 @@ _08290948:
 	movs r0, #1
 	b _082909D0
 	.align 2, 0
-_082909C4: .4byte gUnknown_3001A76
+_082909C4: .4byte 0x03001A76
 _082909C8: .4byte 0x080000C4
 _082909CC: .4byte 0x080000C6
 _082909D0:
@@ -417,7 +417,7 @@ SiiRtcGetDateTime: @ 0x082909D8
 	movs r0, #0
 	b _08290A80
 	.align 2, 0
-_082909EC: .4byte gUnknown_3001A76
+_082909EC: .4byte 0x03001A76
 _082909F0:
 	ldr r0, _08290A24
 	movs r1, #1
@@ -432,7 +432,7 @@ _082909F0:
 	movs r1, #7
 	strh r1, [r0]
 	movs r0, #0x65
-	bl sub_08290DA8
+	bl WriteCommand
 	ldr r0, _08290A2C
 	movs r1, #5
 	strh r1, [r0]
@@ -446,11 +446,11 @@ _08290A1A:
 	bls _08290A30
 	b _08290A4E
 	.align 2, 0
-_08290A24: .4byte gUnknown_3001A76
+_08290A24: .4byte 0x03001A76
 _08290A28: .4byte 0x080000C4
 _08290A2C: .4byte 0x080000C6
 _08290A30:
-	bl sub_08290EEC
+	bl ReadData
 	adds r1, r7, #4
 	ldrb r2, [r1]
 	ldr r3, [r7]
@@ -488,7 +488,7 @@ _08290A4E:
 	b _08290A80
 	.align 2, 0
 _08290A78: .4byte 0x080000C4
-_08290A7C: .4byte gUnknown_3001A76
+_08290A7C: .4byte 0x03001A76
 _08290A80:
 	add sp, #8
 	pop {r7}
@@ -509,7 +509,7 @@ SiiRtcSetDateTime: @ 0x08290A88
 	movs r0, #0
 	b _08290B1C
 	.align 2, 0
-_08290A9C: .4byte gUnknown_3001A76
+_08290A9C: .4byte 0x03001A76
 _08290AA0:
 	ldr r0, _08290AD0
 	movs r1, #1
@@ -524,7 +524,7 @@ _08290AA0:
 	movs r1, #7
 	strh r1, [r0]
 	movs r0, #0x64
-	bl sub_08290DA8
+	bl WriteCommand
 	adds r0, r7, #4
 	movs r1, #0
 	strb r1, [r0]
@@ -535,7 +535,7 @@ _08290AC4:
 	bls _08290ADC
 	b _08290AFC
 	.align 2, 0
-_08290AD0: .4byte gUnknown_3001A76
+_08290AD0: .4byte 0x03001A76
 _08290AD4: .4byte 0x080000C4
 _08290AD8: .4byte 0x080000C6
 _08290ADC:
@@ -545,7 +545,7 @@ _08290ADC:
 	adds r0, r1, r2
 	ldrb r1, [r0]
 	adds r0, r1, #0
-	bl sub_08290E4C
+	bl WriteData
 	adds r1, r7, #4
 	adds r0, r7, #4
 	adds r1, r7, #4
@@ -568,7 +568,7 @@ _08290AFC:
 	b _08290B1C
 	.align 2, 0
 _08290B14: .4byte 0x080000C4
-_08290B18: .4byte gUnknown_3001A76
+_08290B18: .4byte 0x03001A76
 _08290B1C:
 	add sp, #8
 	pop {r7}
@@ -589,7 +589,7 @@ SiiRtcGetTime: @ 0x08290B24
 	movs r0, #0
 	b _08290BD0
 	.align 2, 0
-_08290B38: .4byte gUnknown_3001A76
+_08290B38: .4byte 0x03001A76
 _08290B3C:
 	ldr r0, _08290B70
 	movs r1, #1
@@ -604,7 +604,7 @@ _08290B3C:
 	movs r1, #7
 	strh r1, [r0]
 	movs r0, #0x67
-	bl sub_08290DA8
+	bl WriteCommand
 	ldr r0, _08290B78
 	movs r1, #5
 	strh r1, [r0]
@@ -618,11 +618,11 @@ _08290B66:
 	bls _08290B7C
 	b _08290B9C
 	.align 2, 0
-_08290B70: .4byte gUnknown_3001A76
+_08290B70: .4byte 0x03001A76
 _08290B74: .4byte 0x080000C4
 _08290B78: .4byte 0x080000C6
 _08290B7C:
-	bl sub_08290EEC
+	bl ReadData
 	adds r1, r7, #4
 	ldrb r2, [r1]
 	ldr r3, [r7]
@@ -661,7 +661,7 @@ _08290B9C:
 	b _08290BD0
 	.align 2, 0
 _08290BC8: .4byte 0x080000C4
-_08290BCC: .4byte gUnknown_3001A76
+_08290BCC: .4byte 0x03001A76
 _08290BD0:
 	add sp, #8
 	pop {r7}
@@ -682,7 +682,7 @@ SiiRtcSetTime: @ 0x08290BD8
 	movs r0, #0
 	b _08290C6C
 	.align 2, 0
-_08290BEC: .4byte gUnknown_3001A76
+_08290BEC: .4byte 0x03001A76
 _08290BF0:
 	ldr r0, _08290C20
 	movs r1, #1
@@ -697,7 +697,7 @@ _08290BF0:
 	movs r1, #7
 	strh r1, [r0]
 	movs r0, #0x66
-	bl sub_08290DA8
+	bl WriteCommand
 	adds r0, r7, #4
 	movs r1, #0
 	strb r1, [r0]
@@ -708,7 +708,7 @@ _08290C14:
 	bls _08290C2C
 	b _08290C4E
 	.align 2, 0
-_08290C20: .4byte gUnknown_3001A76
+_08290C20: .4byte 0x03001A76
 _08290C24: .4byte 0x080000C4
 _08290C28: .4byte 0x080000C6
 _08290C2C:
@@ -719,7 +719,7 @@ _08290C2C:
 	adds r1, r0, #4
 	ldrb r2, [r1]
 	adds r0, r2, #0
-	bl sub_08290E4C
+	bl WriteData
 	adds r1, r7, #4
 	adds r0, r7, #4
 	adds r1, r7, #4
@@ -742,7 +742,7 @@ _08290C4E:
 	b _08290C6C
 	.align 2, 0
 _08290C64: .4byte 0x080000C4
-_08290C68: .4byte gUnknown_3001A76
+_08290C68: .4byte 0x03001A76
 _08290C6C:
 	add sp, #8
 	pop {r7}
@@ -763,7 +763,7 @@ SiiRtcSetAlarm: @ 0x08290C74
 	movs r0, #0
 	b _08290DA0
 	.align 2, 0
-_08290C88: .4byte gUnknown_3001A76
+_08290C88: .4byte 0x03001A76
 _08290C8C:
 	ldr r0, _08290CF4
 	movs r1, #1
@@ -817,7 +817,7 @@ _08290C8C:
 	strb r1, [r0]
 	b _08290D16
 	.align 2, 0
-_08290CF4: .4byte gUnknown_3001A76
+_08290CF4: .4byte 0x03001A76
 _08290CF8:
 	adds r0, r7, #0
 	adds r0, #8
@@ -857,7 +857,7 @@ _08290D16:
 	movs r1, #7
 	strh r1, [r0]
 	movs r0, #0x68
-	bl sub_08290DA8
+	bl WriteCommand
 	adds r0, r7, #4
 	movs r1, #0
 	strb r1, [r0]
@@ -878,7 +878,7 @@ _08290D60:
 	adds r0, r0, r2
 	ldrb r1, [r0]
 	adds r0, r1, #0
-	bl sub_08290E4C
+	bl WriteData
 	adds r1, r7, #4
 	adds r0, r7, #4
 	adds r1, r7, #4
@@ -901,7 +901,7 @@ _08290D82:
 	b _08290DA0
 	.align 2, 0
 _08290D98: .4byte 0x080000C4
-_08290D9C: .4byte gUnknown_3001A76
+_08290D9C: .4byte 0x03001A76
 _08290DA0:
 	add sp, #0xc
 	pop {r4, r7}
@@ -909,8 +909,8 @@ _08290DA0:
 	bx r1
 	thumb_func_end SiiRtcSetAlarm
 
-	thumb_func_start sub_08290DA8
-sub_08290DA8: @ 0x08290DA8
+	thumb_func_start WriteCommand
+WriteCommand: @ 0x08290DA8
 	push {r4, r5, r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -996,10 +996,10 @@ _08290E44:
 	pop {r4, r5, r7}
 	pop {r1}
 	bx r1
-	thumb_func_end sub_08290DA8
+	thumb_func_end WriteCommand
 
-	thumb_func_start sub_08290E4C
-sub_08290E4C: @ 0x08290E4C
+	thumb_func_start WriteData
+WriteData: @ 0x08290E4C
 	push {r4, r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -1083,10 +1083,10 @@ _08290EE4:
 	pop {r4, r7}
 	pop {r1}
 	bx r1
-	thumb_func_end sub_08290E4C
+	thumb_func_end WriteData
 
-	thumb_func_start sub_08290EEC
-sub_08290EEC: @ 0x08290EEC
+	thumb_func_start ReadData
+ReadData: @ 0x08290EEC
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -1160,10 +1160,10 @@ _08290F70:
 	pop {r7}
 	pop {r1}
 	bx r1
-	thumb_func_end sub_08290EEC
+	thumb_func_end ReadData
 
-	thumb_func_start sub_08290F78
-sub_08290F78: @ 0x08290F78
+	thumb_func_start EnableGpioPortRead
+EnableGpioPortRead: @ 0x08290F78
 	push {r7, lr}
 	mov r7, sp
 	ldr r0, _08290F88
@@ -1174,10 +1174,10 @@ sub_08290F78: @ 0x08290F78
 	bx r0
 	.align 2, 0
 _08290F88: .4byte 0x080000C8
-	thumb_func_end sub_08290F78
+	thumb_func_end EnableGpioPortRead
 
-	thumb_func_start sub_08290F8C
-sub_08290F8C: @ 0x08290F8C
+	thumb_func_start DisableGpioPortRead
+DisableGpioPortRead: @ 0x08290F8C
 	push {r7, lr}
 	mov r7, sp
 	ldr r0, _08290F9C
@@ -1188,4 +1188,5 @@ sub_08290F8C: @ 0x08290F8C
 	bx r0
 	.align 2, 0
 _08290F9C: .4byte 0x080000C8
-	thumb_func_end sub_08290F8C
+	thumb_func_end DisableGpioPortRead
+
