@@ -2,6 +2,8 @@
 
 This is a disassembly of the Japanese version of Pokémon Emerald.
 
+You must have a Japanese Emerald ROM named `baserom_jp.gba` in the project root.
+
 It builds the following ROM:
 * pokeemerald_jp.gba `sha1: d7cf8f156ba9c455d164e1ea780a6bf1945465c2`
 
