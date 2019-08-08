@@ -1,7 +1,8 @@
-    .include "asm/macros.inc"
-    .include "constants/constants.inc"
-	.text
-    .syntax unified
+.include "asm/macros.inc"
+.include "constants/constants.inc"
+.text
+.syntax unified
+
 	thumb_func_start GameCubeMultiBoot_Hash
 GameCubeMultiBoot_Hash: @ 0x0828D2F8
 	push {r4, lr}
@@ -18,8 +19,8 @@ _0828D306:
 	pop {r4, pc}
 	thumb_func_end GameCubeMultiBoot_Hash
 
-	thumb_func_start GameCubeMultiBoot_Main
-GameCubeMultiBoot_Main: @ 0x0828D30C
+	thumb_func_start sGameCubeMultiBoot_Main
+sGameCubeMultiBoot_Main: @ 0x0828D30C
 	ldr r1, [r0, #0x28]
 	cmp r1, #0
 	beq _0828D332
@@ -156,7 +157,7 @@ _0828D3FE:
 _0828D400: .4byte 0x0000A1C1
 _0828D404: .4byte 0x6177614B
 _0828D408: .4byte 0x08000004
-	thumb_func_end GameCubeMultiBoot_Main
+	thumb_func_end sGameCubeMultiBoot_Main
 
 	thumb_func_start GameCubeMultiBoot_ExecuteProgram
 GameCubeMultiBoot_ExecuteProgram: @ 0x0828D40C
@@ -172,7 +173,7 @@ GameCubeMultiBoot_ExecuteProgram: @ 0x0828D40C
 _0828D41E:
 	bx lr
 	thumb_func_end GameCubeMultiBoot_ExecuteProgram
-
+	
 	thumb_func_start GameCubeMultiBoot_Init
 GameCubeMultiBoot_Init:
 	ldr r3, _0828D5C0
@@ -213,9 +214,9 @@ _0828D438:
 	strh r1, [r3]
 	strh r2, [r3, #8]
 	bx lr
-	thumb_func_end GameCubeMultiBoot_ExecuteProgram
+	thumb_func_end GameCubeMultiBoot_Init
 
-	non_word_aligned_thumb_func_start GameCubeMultiBoot_HandleSerialInterrupt
+	thumb_func_start GameCubeMultiBoot_HandleSerialInterrupt
 GameCubeMultiBoot_HandleSerialInterrupt: @ 0x0828D46A
 	ldr r3, _0828D5C4
 	ldrh r1, [r3, #0x20]
@@ -425,7 +426,7 @@ GcMbIntrHandler_StopUnconditionally: @ 0x0828D598
 	b _0828D480
 	thumb_func_end GcMbIntrHandler_StopUnconditionally
 
-	non_word_aligned_thumb_func_start GameCubeMultiBoot_Quit
+	thumb_func_start GameCubeMultiBoot_Quit
 GameCubeMultiBoot_Quit: @ 0x0828D59A
 	ldr r3, _0828D5C0
 	ldrh r2, [r3, #8]
@@ -450,5 +451,6 @@ _0828D5C0: .4byte 0x04000200
 _0828D5C4: .4byte 0x04000120
 _0828D5C8: .4byte 0x04000004
 _0828D5CC: .4byte 0x4A565841
-_0828D5D0: .4byte gUnknown_2000000
+_0828D5D0: .4byte 0x02000000
 	thumb_func_end GameCubeMultiBoot_Quit
+

@@ -1,7 +1,7 @@
-    .include "asm/macros.inc"
-    .include "constants/constants.inc"
-	.text
-    .syntax unified
+.include "asm/macros.inc"
+.include "constants/constants.inc"
+.text
+.syntax unified
 
 	thumb_func_start AGBPrintInit
 AGBPrintInit: @ 0x08295600
@@ -485,7 +485,7 @@ AGBAssert: @ 0x0829596C
 	.hword 0xEFFF
 	b _082959A4
 	.align 2, 0
-_08295994: .4byte gUnknown_890EEF4
+_08295994: .4byte 0x0890EEF4
 _08295998:
 	ldr r0, _082959AC
 	ldr r2, [r7, #4]
@@ -498,5 +498,6 @@ _082959A4:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_082959AC: .4byte gUnknown_890EF28
+_082959AC: .4byte 0x0890EF28
 	thumb_func_end AGBAssert
+

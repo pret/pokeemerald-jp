@@ -1,7 +1,7 @@
-    .include "asm/macros.inc"
-    .include "constants/constants.inc"
-	.text
-    .syntax unified
+.include "asm/macros.inc"
+.include "constants/constants.inc"
+.text
+.syntax unified
 
 	thumb_func_start ArcTan2
 ArcTan2: @ 0x082959B0
@@ -89,7 +89,7 @@ SoftReset: @ 0x082959E4
 	movs r0, r0
 	.align 2, 0
 _082959F4: .4byte 0x04000208
-_082959F8: .4byte gUnknown_3007F00
+_082959F8: .4byte 0x03007F00
 	thumb_func_end SoftReset
 
 	thumb_func_start Sqrt
@@ -105,3 +105,4 @@ VBlankIntrWait: @ 0x08295A00
 	bx lr
 	.align 2, 0
 	thumb_func_end VBlankIntrWait
+

@@ -1,18 +1,23 @@
 """ Renames functions in the config when they are renamed in the .s"""
 import re
 import os
+import glob
 from collections import defaultdict
+from contextlib import ExitStack
+from itertools import chain
 
 
 config_path = 'pokeemerald_jp.cfg'
-asm_path = os.path.join('asm', 'rom.s')
+asm_path = os.path.join('asm', '*.s')
 
 
-def update_config(asm_path, config_path):  # Find and replace all renamed functions
+def update_config(asm_glob, config_path):  # Find and replace all renamed functions
     addresses = {}  # Maps integer addresses to function names
     asm_exp = re.compile(r'(?!sub_)(\w+): @ (0x[\da-fA-F]+)')  # Ignore unknown functions
     cfg_exp = re.compile(r'(thumb_func|arm_func) (0x[\da-fA-F]+)\r?\n')
-    with open(asm_path, 'r') as f:  # Gather functions
+    with ExitStack() as stack:
+        files = [stack.enter_context(open(path, 'r')) for path in glob.iglob(asm_glob)]
+        f = chain(*files)
         count = 0
         print('Found 0 named functions.', end='', flush=True)
         for i, line in enumerate(f, 1):
@@ -57,6 +62,6 @@ def check_dups(config_path):  # Find duplicate names
 
 
 if __name__ == '__main__':
-    update_config(asm_path, config_path)
+    #update_config(asm_path, config_path)
     print('Find duplicates:')
     check_dups(config_path)

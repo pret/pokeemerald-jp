@@ -1,7 +1,7 @@
-    .include "asm/macros.inc"
-    .include "constants/constants.inc"
-	.text
-    .syntax unified
+.include "asm/macros.inc"
+.include "constants/constants.inc"
+.text
+.syntax unified
 
 	thumb_func_start sub_082952F4
 sub_082952F4: @ 0x082952F4
@@ -41,8 +41,8 @@ _08295310:
 	b _0829535E
 	.align 2, 0
 _0829533C: .4byte 0x04000200
-_08295340: .4byte gUnknown_3007608
-_08295344: .4byte sub_08295510
+_08295340: .4byte 0x03007608
+_08295344: .4byte 0x08295511
 _08295348: .4byte 0x04000100
 _0829534C:
 	strh r6, [r4, #2]
@@ -89,7 +89,7 @@ _08295390:
 	.align 2, 0
 _0829539C: .4byte 0x04000208
 _082953A0: .4byte 0x04000200
-_082953A4: .4byte gUnknown_3007608
+_082953A4: .4byte 0x03007608
 	thumb_func_end sub_082952F4
 
 	thumb_func_start sub_082953A8
@@ -140,9 +140,9 @@ sub_082953A8: @ 0x082953A8
 	.align 2, 0
 _08295400: .4byte 0x04000208
 _08295404: .4byte 0x04000200
-_08295408: .4byte gUnknown_3007608
+_08295408: .4byte 0x03007608
 _0829540C: .4byte 0x04000134
-_08295410: .4byte gUnknown_3007640
+_08295410: .4byte 0x03007640
 _08295414: .4byte 0x05000003
 _08295418: .4byte 0x04000202
 	thumb_func_end sub_082953A8
@@ -160,7 +160,7 @@ sub_0829541C: @ 0x0829541C
 	beq _0829546C
 	b _08295504
 	.align 2, 0
-_08295430: .4byte gUnknown_3007640
+_08295430: .4byte 0x03007640
 _08295434:
 	movs r6, #1
 	strb r6, [r7]
@@ -310,7 +310,7 @@ _0829552A:
 	b _0829557E
 	.align 2, 0
 _08295558: .4byte 0x04000120
-_0829555C: .4byte gUnknown_3007640
+_0829555C: .4byte 0x03007640
 _08295560: .4byte 0x04000128
 _08295564:
 	ldrh r0, [r4, #4]
@@ -337,7 +337,7 @@ _0829557E:
 	ldrh r0, [r0]
 	b _08295596
 	.align 2, 0
-_08295590: .4byte gUnknown_890EEDC
+_08295590: .4byte 0x0890EEDC
 _08295594:
 	ldr r0, _082955EC
 _08295596:
@@ -393,3 +393,4 @@ _082955F4: .4byte 0x0000494E
 _082955F8: .4byte 0x00000257
 _082955FC: .4byte 0x04000128
 	thumb_func_end sub_08295510
+

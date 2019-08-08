@@ -1,7 +1,7 @@
-    .include "asm/macros.inc"
-    .include "constants/constants.inc"
-	.text
-    .syntax unified
+.include "asm/macros.inc"
+.include "constants/constants.inc"
+.text
+.syntax unified
 
 	arm_func_start IntrSIO32
 IntrSIO32: @ 0x08291ADC
@@ -36,7 +36,7 @@ _08291B30:
 	ldmdb fp, {fp, sp, lr}
 	bx lr
 	.align 2, 0
-_08291B3C: .4byte gUnknown_3007608
+_08291B3C: .4byte 0x03007608
 	arm_func_end sub_08291B0C
 
 	arm_func_start sio32intr_clock_master
@@ -210,7 +210,7 @@ _08291D88:
 	bl sub_08292430
 	b _08291DC8
 	.align 2, 0
-_08291DB4: .4byte gUnknown_3007608
+_08291DB4: .4byte 0x03007608
 _08291DB8:
 	add r3, r5, #3
 	strh r3, [r4]
@@ -479,7 +479,7 @@ _0829216C:
 	bhi _0829216C
 	b _082921A8
 	.align 2, 0
-_0829217C: .4byte gUnknown_3007608
+_0829217C: .4byte 0x03007608
 _08292180: .4byte 0x996601EE
 _08292184:
 	mov r2, #0xff00
@@ -539,7 +539,7 @@ _0829222C:
 	ldmdb fp, {fp, sp, lr}
 	bx lr
 	.align 2, 0
-_08292240: .4byte gUnknown_3007608
+_08292240: .4byte 0x03007608
 	arm_func_end handshake_wait
 
 	arm_func_start STWI_set_timer_in_RAM
@@ -595,7 +595,7 @@ _082922E4:
 	mov r3, #3
 	b _08292314
 	.align 2, 0
-_082922FC: .4byte gUnknown_3007608
+_082922FC: .4byte 0x03007608
 _08292300:
 	mvn r3, #0x850
 	sub r3, r3, #2
@@ -641,7 +641,7 @@ STWI_stop_timer_in_RAM:
 	ldmdb fp, {fp, sp, lr}
 	bx lr
 	.align 2, 0
-_082923A0: .4byte gUnknown_3007608
+_082923A0: .4byte 0x03007608
 	arm_func_end STWI_set_timer_in_RAM
 
 	arm_func_start STWI_init_slave
@@ -681,7 +681,7 @@ STWI_init_slave: @ 0x082923A4
 	ldmdb fp, {fp, sp, lr}
 	bx lr
 	.align 2, 0
-_0829242C: .4byte gUnknown_3007608
+_0829242C: .4byte 0x03007608
 	arm_func_end STWI_init_slave
 
 	arm_func_start sub_08292430
@@ -698,3 +698,4 @@ sub_08292434: @ 0x08292434
 sub_08292438: @ 0x08292438
 	bx r0
 	arm_func_end sub_08292438
+

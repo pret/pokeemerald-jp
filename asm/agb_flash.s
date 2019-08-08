@@ -1,7 +1,7 @@
-    .include "asm/macros.inc"
-    .include "constants/constants.inc"
-	.text
-    .syntax unified
+.include "asm/macros.inc"
+.include "constants/constants.inc"
+.text
+.syntax unified
 
 	thumb_func_start SwitchFlashBank
 SwitchFlashBank: @ 0x0828FDE4
@@ -120,8 +120,8 @@ _0828FEC0:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0828FEC4: .4byte gUnknown_3001A6A
-_0828FEC8: .4byte gUnknown_30075E0
+_0828FEC4: .4byte 0x03001A6A
+_0828FEC8: .4byte 0x030075E0
 	thumb_func_end FlashTimerIntr
 
 	thumb_func_start SetFlashTimerIntr
@@ -145,10 +145,10 @@ SetFlashTimerIntr: @ 0x0828FECC
 	movs r0, #0
 	b _0828FF02
 	.align 2, 0
-_0828FEF0: .4byte gUnknown_3001A68
-_0828FEF4: .4byte gUnknown_3001A6C
+_0828FEF0: .4byte 0x03001A68
+_0828FEF4: .4byte 0x03001A6C
 _0828FEF8: .4byte 0x04000100
-_0828FEFC: .4byte FlashTimerIntr
+_0828FEFC: .4byte 0x0828FEA5
 _0828FF00:
 	movs r0, #1
 _0828FF02:
@@ -225,14 +225,14 @@ StartFlashTimer: @ 0x0828FF08
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0828FF8C: .4byte gUnknown_3007604
-_0828FF90: .4byte gUnknown_3001A70
+_0828FF8C: .4byte 0x03007604
+_0828FF90: .4byte 0x03001A70
 _0828FF94: .4byte 0x04000208
-_0828FF98: .4byte gUnknown_3001A6C
+_0828FF98: .4byte 0x03001A6C
 _0828FF9C: .4byte 0x04000200
-_0828FFA0: .4byte gUnknown_3001A68
-_0828FFA4: .4byte gUnknown_30075E0
-_0828FFA8: .4byte gUnknown_3001A6A
+_0828FFA0: .4byte 0x03001A68
+_0828FFA4: .4byte 0x030075E0
+_0828FFA8: .4byte 0x03001A6A
 _0828FFAC: .4byte 0x04000202
 	thumb_func_end StartFlashTimer
 
@@ -263,10 +263,10 @@ StopFlashTimer: @ 0x0828FFB0
 	bx lr
 	.align 2, 0
 _0828FFE0: .4byte 0x04000208
-_0828FFE4: .4byte gUnknown_3001A6C
+_0828FFE4: .4byte 0x03001A6C
 _0828FFE8: .4byte 0x04000200
-_0828FFEC: .4byte gUnknown_3001A68
-_0828FFF0: .4byte gUnknown_3001A70
+_0828FFEC: .4byte 0x03001A68
+_0828FFF0: .4byte 0x03001A70
 	thumb_func_end StopFlashTimer
 
 	thumb_func_start ReadFlash1
@@ -291,9 +291,9 @@ SetReadFlash1: @ 0x0828FFF8
 	lsls r0, r0, #0xf
 	b _0829002C
 	.align 2, 0
-_08290014: .4byte gUnknown_30075E4
-_08290018: .4byte ReadFlash1
-_0829001C: .4byte SetReadFlash1
+_08290014: .4byte 0x030075E4
+_08290018: .4byte 0x0828FFF5
+_0829001C: .4byte 0x0828FFF9
 _08290020:
 	ldrh r0, [r3]
 	strh r0, [r2]
@@ -376,9 +376,9 @@ _08290094:
 	.align 2, 0
 _082900A8: .4byte 0x04000204
 _082900AC: .4byte 0x0000FFFC
-_082900B0: .4byte gUnknown_30075F0
-_082900B4: .4byte ReadFlash_Core
-_082900B8: .4byte ReadFlash
+_082900B0: .4byte 0x030075F0
+_082900B4: .4byte 0x08290039
+_082900B8: .4byte 0x0829005D
 _082900BC:
 	ldrh r0, [r3]
 	strh r0, [r2]
@@ -409,7 +409,7 @@ _082900C8:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_082900F4: .4byte gUnknown_30075F0
+_082900F4: .4byte 0x030075F0
 	thumb_func_end ReadFlash
 
 	thumb_func_start VerifyFlashSector_Core
@@ -484,9 +484,9 @@ _0829015C:
 	.align 2, 0
 _08290170: .4byte 0x04000204
 _08290174: .4byte 0x0000FFFC
-_08290178: .4byte gUnknown_30075F0
-_0829017C: .4byte VerifyFlashSector_Core
-_08290180: .4byte VerifyFlashSector
+_08290178: .4byte 0x030075F0
+_0829017C: .4byte 0x082900F9
+_08290180: .4byte 0x08290129
 _08290184:
 	ldrh r0, [r3]
 	strh r0, [r2]
@@ -516,7 +516,7 @@ _08290190:
 	pop {r1}
 	bx r1
 	.align 2, 0
-_082901BC: .4byte gUnknown_30075F0
+_082901BC: .4byte 0x030075F0
 	thumb_func_end VerifyFlashSector
 
 	thumb_func_start VerifyFlashSectorNBytes
@@ -558,11 +558,11 @@ _082901E8:
 	lsls r0, r0, #0xf
 	b _08290228
 	.align 2, 0
-_08290208: .4byte gUnknown_30075F0
+_08290208: .4byte 0x030075F0
 _0829020C: .4byte 0x04000204
 _08290210: .4byte 0x0000FFFC
-_08290214: .4byte VerifyFlashSector_Core
-_08290218: .4byte VerifyFlashSector
+_08290214: .4byte 0x082900F9
+_08290218: .4byte 0x08290129
 _0829021C:
 	ldrh r0, [r3]
 	strh r0, [r2]
@@ -592,7 +592,7 @@ _08290228:
 	pop {r1}
 	bx r1
 	.align 2, 0
-_08290254: .4byte gUnknown_30075F0
+_08290254: .4byte 0x030075F0
 	thumb_func_end VerifyFlashSectorNBytes
 
 	thumb_func_start ProgramFlashSectorAndVerify
@@ -631,7 +631,7 @@ _08290290:
 	pop {r1}
 	bx r1
 	.align 2, 0
-_08290298: .4byte gUnknown_30075EC
+_08290298: .4byte 0x030075EC
 	thumb_func_end ProgramFlashSectorAndVerify
 
 	thumb_func_start ProgramFlashSectorAndVerifyNBytes
@@ -672,7 +672,7 @@ _082902D8:
 	pop {r1}
 	bx r1
 	.align 2, 0
-_082902E0: .4byte gUnknown_30075EC
+_082902E0: .4byte 0x030075EC
 	thumb_func_end ProgramFlashSectorAndVerifyNBytes
 
 	thumb_func_start IdentifyFlash
@@ -694,7 +694,7 @@ IdentifyFlash: @ 0x082902E4
 	.align 2, 0
 _08290304: .4byte 0x04000204
 _08290308: .4byte 0x0000FFFC
-_0829030C: .4byte gUnknown_890ED54
+_0829030C: .4byte 0x0890ED54
 _08290310:
 	adds r2, #4
 _08290312:
@@ -742,13 +742,13 @@ _08290326:
 	pop {r1}
 	bx r1
 	.align 2, 0
-_08290368: .4byte gUnknown_30075F4
-_0829036C: .4byte gUnknown_30075EC
-_08290370: .4byte gUnknown_30075FC
-_08290374: .4byte gUnknown_3007600
-_08290378: .4byte gUnknown_30075E8
-_0829037C: .4byte gUnknown_3007604
-_08290380: .4byte gUnknown_30075F0
+_08290368: .4byte 0x030075F4
+_0829036C: .4byte 0x030075EC
+_08290370: .4byte 0x030075FC
+_08290374: .4byte 0x03007600
+_08290378: .4byte 0x030075E8
+_0829037C: .4byte 0x03007604
+_08290380: .4byte 0x030075F0
 	thumb_func_end IdentifyFlash
 
 	thumb_func_start WaitForFlashWrite_Common
@@ -771,7 +771,7 @@ WaitForFlashWrite_Common: @ 0x08290384
 	mov sb, r1
 	b _082903E8
 	.align 2, 0
-_082903A8: .4byte gUnknown_30075E4
+_082903A8: .4byte 0x030075E4
 _082903AC: .4byte 0x0E005555
 _082903B0:
 	movs r0, #0xf0
@@ -802,7 +802,7 @@ _082903DE:
 	mov r8, r7
 	b _08290410
 	.align 2, 0
-_082903E4: .4byte gUnknown_30075E0
+_082903E4: .4byte 0x030075E0
 _082903E8:
 	ldr r1, [r6]
 	adds r0, r4, #0
@@ -882,10 +882,10 @@ EraseFlashChip_MX: @ 0x08290424
 	.align 2, 0
 _08290480: .4byte 0x04000204
 _08290484: .4byte 0x0000FFFC
-_08290488: .4byte gUnknown_30075F0
+_08290488: .4byte 0x030075F0
 _0829048C: .4byte 0x0E005555
 _08290490: .4byte 0x0E002AAA
-_08290494: .4byte gUnknown_30075E8
+_08290494: .4byte 0x030075E8
 	thumb_func_end EraseFlashChip_MX
 
 	thumb_func_start EraseFlashSector_MX
@@ -902,7 +902,7 @@ EraseFlashSector_MX: @ 0x08290498
 	ldr r0, _082904B4
 	b _08290558
 	.align 2, 0
-_082904B0: .4byte gUnknown_30075F0
+_082904B0: .4byte 0x030075F0
 _082904B4: .4byte 0x000080FF
 _082904B8:
 	lsrs r0, r6, #4
@@ -965,10 +965,10 @@ _082904C8:
 	.align 2, 0
 _08290530: .4byte 0x04000204
 _08290534: .4byte 0x0000FFFC
-_08290538: .4byte gUnknown_30075F0
+_08290538: .4byte 0x030075F0
 _0829053C: .4byte 0x0E005555
 _08290540: .4byte 0x0E002AAA
-_08290544: .4byte gUnknown_30075E8
+_08290544: .4byte 0x030075E8
 _08290548:
 	ldr r2, _08290560
 	ldrh r0, [r2]
@@ -1044,12 +1044,12 @@ ProgramFlashByte_MX: @ 0x08290568
 	lsrs r0, r0, #0x10
 	b _082905F4
 	.align 2, 0
-_082905D8: .4byte gUnknown_30075F0
+_082905D8: .4byte 0x030075F0
 _082905DC: .4byte 0x04000204
 _082905E0: .4byte 0x0000FFFC
 _082905E4: .4byte 0x0E005555
 _082905E8: .4byte 0x0E002AAA
-_082905EC: .4byte gUnknown_30075E8
+_082905EC: .4byte 0x030075E8
 _082905F0:
 	movs r0, #0x80
 	lsls r0, r0, #8
@@ -1086,7 +1086,7 @@ sub_082905FC: @ 0x082905FC
 	.align 2, 0
 _08290628: .4byte 0x0E005555
 _0829062C: .4byte 0x0E002AAA
-_08290630: .4byte gUnknown_30075E8
+_08290630: .4byte 0x030075E8
 	thumb_func_end sub_082905FC
 
 	thumb_func_start ProgramFlashSector_MX
@@ -1104,7 +1104,7 @@ ProgramFlashSector_MX: @ 0x08290634
 	ldr r0, _08290650
 	b _082906CE
 	.align 2, 0
-_0829064C: .4byte gUnknown_30075F0
+_0829064C: .4byte 0x030075F0
 _08290650: .4byte 0x000080FF
 _08290654:
 	adds r0, r4, #0
@@ -1143,8 +1143,8 @@ _08290654:
 	.align 2, 0
 _0829069C: .4byte 0x04000204
 _082906A0: .4byte 0x0000FFFC
-_082906A4: .4byte gUnknown_30075F0
-_082906A8: .4byte gUnknown_30075F8
+_082906A4: .4byte 0x030075F0
+_082906A8: .4byte 0x030075F8
 _082906AC:
 	ldrh r0, [r6]
 	subs r0, #1
@@ -1171,3 +1171,4 @@ _082906CE:
 	bx r1
 	.align 2, 0
 	thumb_func_end ProgramFlashSector_MX
+
