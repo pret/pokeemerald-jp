@@ -209,7 +209,6 @@ def match_iter(instrs, graph, slices=10):  # Iteratively try to find a match
         return matches[0][1]
     elif not matches:  # No match anywhere
         return None
-    return None
     potential = {t[1] for t in matches}  # All potential matches
     for _ in range(slices):  # Slice the list randomly and search for matches
         start = random.randint(1, len(instrs))
@@ -219,8 +218,7 @@ def match_iter(instrs, graph, slices=10):  # Iteratively try to find a match
         elif end < start:
             start, end = end, start
         matches = match_instrs(instrs[start:end], graph)
-        min_len = max((end - start) // 2, 1)
-        new_set = {t[1]-2*start for t in matches if t[0] >= min_len}
+        new_set = {t[1]-2*start for t in matches}
         potential = potential & new_set  # Take intersection of old and new locations
         if not potential:
             return None
