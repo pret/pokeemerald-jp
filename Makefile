@@ -21,12 +21,6 @@ all: $(ROM)
 compare: $(ROM)
 	$(SHA1SUM) rom_jp.sha1
 
-rename: search compare
-
-search:
-	python3 graph_search.py
-	python3 update_config.py
-
 clean:
 	rm -f $(ROM) $(ELF) $(OBJFILE)
 

@@ -15,7 +15,7 @@ SECTIONS {
     .text :
     ALIGN(4)
     {
-        asm/unk0.o(.text);
+        asm/crt0.o(.text);
         asm/main.o(.text);
         asm/alloc.o(.text);
         asm/dma3_manager.o(.text);
