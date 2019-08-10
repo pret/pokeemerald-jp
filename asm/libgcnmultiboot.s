@@ -216,7 +216,7 @@ _0828D438:
 	bx lr
 	thumb_func_end GameCubeMultiBoot_Init
 
-	thumb_func_start GameCubeMultiBoot_HandleSerialInterrupt
+	non_word_aligned_thumb_func_start GameCubeMultiBoot_HandleSerialInterrupt
 GameCubeMultiBoot_HandleSerialInterrupt: @ 0x0828D46A
 	ldr r3, _0828D5C4
 	ldrh r1, [r3, #0x20]
@@ -426,7 +426,7 @@ GcMbIntrHandler_StopUnconditionally: @ 0x0828D598
 	b _0828D480
 	thumb_func_end GcMbIntrHandler_StopUnconditionally
 
-	thumb_func_start GameCubeMultiBoot_Quit
+	non_word_aligned_thumb_func_start GameCubeMultiBoot_Quit
 GameCubeMultiBoot_Quit: @ 0x0828D59A
 	ldr r3, _0828D5C0
 	ldrh r2, [r3, #8]

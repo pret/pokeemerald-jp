@@ -2567,7 +2567,7 @@ _08293738:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08293740: .4byte 0x08293745
+_08293740: .4byte rfu_CB_disconnect
 	thumb_func_end rfu_REQ_disconnect
 
 	thumb_func_start rfu_CB_disconnect
@@ -2674,10 +2674,10 @@ _0829380E:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08293814: .4byte 0x03007630
-_08293818: .4byte 0x08292701
-_0829381C: .4byte 0x03007638
-_08293820: .4byte 0x03007634
+_08293814: .4byte gUnknown_3007630
+_08293818: .4byte rfu_CB_defaultCallback
+_0829381C: .4byte gUnknown_3007638
+_08293820: .4byte gUnknown_3007634
 	thumb_func_end rfu_CB_disconnect
 
 	thumb_func_start rfu_REQ_CHILD_startConnectRecovery
@@ -2722,9 +2722,9 @@ _08293852:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08293874: .4byte 0x03007634
-_08293878: .4byte 0x082926C1
-_0829387C: .4byte 0x03007630
+_08293874: .4byte gUnknown_3007634
+_08293878: .4byte rfu_STC_REQ_callback
+_0829387C: .4byte gUnknown_3007630
 	thumb_func_end rfu_REQ_CHILD_startConnectRecovery
 
 	thumb_func_start rfu_REQ_CHILD_pollConnectRecovery
@@ -2736,7 +2736,7 @@ rfu_REQ_CHILD_pollConnectRecovery: @ 0x08293880
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08293890: .4byte 0x08293895
+_08293890: .4byte rfu_CB_CHILD_pollConnectRecovery
 	thumb_func_end rfu_REQ_CHILD_pollConnectRecovery
 
 	thumb_func_start rfu_CB_CHILD_pollConnectRecovery
@@ -2819,9 +2819,9 @@ _08293918:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0829392C: .4byte 0x03007638
-_08293930: .4byte 0x03007634
-_08293934: .4byte 0x03007630
+_0829392C: .4byte gUnknown_3007638
+_08293930: .4byte gUnknown_3007634
+_08293934: .4byte gUnknown_3007630
 	thumb_func_end rfu_CB_CHILD_pollConnectRecovery
 
 	thumb_func_start rfu_CHILD_getConnectRecoveryStatus
@@ -2843,7 +2843,7 @@ rfu_CHILD_getConnectRecoveryStatus: @ 0x08293938
 	movs r0, #0x10
 	b _08293962
 	.align 2, 0
-_08293958: .4byte 0x03007638
+_08293958: .4byte gUnknown_3007638
 _0829395C:
 	ldrb r0, [r1, #4]
 	strb r0, [r2]
@@ -2863,7 +2863,7 @@ rfu_REQ_CHILD_endConnectRecovery: @ 0x08293968
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08293978: .4byte 0x08293895
+_08293978: .4byte rfu_CB_CHILD_pollConnectRecovery
 	thumb_func_end rfu_REQ_CHILD_endConnectRecovery
 
 	thumb_func_start sub_0829397C
@@ -2910,7 +2910,7 @@ rfu_REQ_changeMasterSlave: @ 0x082939AC
 	bl STWI_send_MS_ChangeREQ
 	b _082939D4
 	.align 2, 0
-_082939C8: .4byte 0x082926C1
+_082939C8: .4byte rfu_STC_REQ_callback
 _082939CC:
 	movs r0, #0x27
 	movs r1, #0
@@ -2950,7 +2950,7 @@ _08293A06:
 	pop {r1}
 	bx r1
 	.align 2, 0
-_08293A0C: .4byte 0x03007608
+_08293A0C: .4byte gUnknown_3007608
 	thumb_func_end rfu_getMasterSlave
 
 	thumb_func_start rfu_clearAllSlot
@@ -3021,12 +3021,12 @@ _08293A2C:
 	bx r0
 	.align 2, 0
 _08293A94: .4byte 0x04000208
-_08293A98: .4byte 0x03007620
+_08293A98: .4byte gUnknown_3007620
 _08293A9C: .4byte 0x01000034
-_08293AA0: .4byte 0x03007610
+_08293AA0: .4byte gUnknown_3007610
 _08293AA4: .4byte 0x0100000A
-_08293AA8: .4byte 0x03007630
-_08293AAC: .4byte 0x03007634
+_08293AA8: .4byte gUnknown_3007630
+_08293AAC: .4byte gUnknown_3007634
 	thumb_func_end rfu_clearAllSlot
 
 	thumb_func_start rfu_STC_releaseFrame
@@ -3060,8 +3060,8 @@ _08293ADC:
 	strb r0, [r1, #0xf]
 	b _08293B10
 	.align 2, 0
-_08293AE8: .4byte 0x03007634
-_08293AEC: .4byte 0x03007630
+_08293AE8: .4byte gUnknown_3007634
+_08293AEC: .4byte gUnknown_3007630
 _08293AF0:
 	ldr r6, _08293B18
 	cmp r3, #0
@@ -3085,7 +3085,7 @@ _08293B10:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08293B18: .4byte 0x03007630
+_08293B18: .4byte gUnknown_3007630
 	thumb_func_end rfu_STC_releaseFrame
 
 	thumb_func_start rfu_clearSlot
@@ -3153,8 +3153,8 @@ _08293B6A:
 	b _08293BBC
 	.align 2, 0
 _08293B90: .4byte 0x04000208
-_08293B94: .4byte 0x03007620
-_08293B98: .4byte 0x03007630
+_08293B94: .4byte gUnknown_3007620
+_08293B98: .4byte gUnknown_3007630
 _08293B9C:
 	movs r0, #8
 	mov r1, r8
@@ -3251,10 +3251,10 @@ _08293C14:
 	strb r0, [r1, #0xf]
 	b _08293C72
 	.align 2, 0
-_08293C50: .4byte 0x03007630
+_08293C50: .4byte gUnknown_3007630
 _08293C54: .4byte 0x0100001A
-_08293C58: .4byte 0x03007610
-_08293C5C: .4byte 0x03007634
+_08293C58: .4byte gUnknown_3007610
+_08293C5C: .4byte gUnknown_3007634
 _08293C60:
 	ldr r2, _08293CC4
 	ldr r1, [r2]
@@ -3310,9 +3310,9 @@ _08293CB4:
 	pop {r1}
 	bx r1
 	.align 2, 0
-_08293CC4: .4byte 0x03007630
+_08293CC4: .4byte gUnknown_3007630
 _08293CC8: .4byte 0x01000006
-_08293CCC: .4byte 0x03007610
+_08293CCC: .4byte gUnknown_3007610
 _08293CD0: .4byte 0x01000004
 _08293CD4: .4byte 0x04000208
 	thumb_func_end rfu_clearSlot
@@ -3346,7 +3346,7 @@ _08293CF4:
 	str r6, [r0, #0x6c]
 	b _08293D2A
 	.align 2, 0
-_08293D0C: .4byte 0x03007620
+_08293D0C: .4byte gUnknown_3007620
 _08293D10:
 	movs r0, #0x10
 	ands r2, r0
@@ -3369,7 +3369,7 @@ _08293D2C:
 	pop {r1}
 	bx r1
 	.align 2, 0
-_08293D34: .4byte 0x03007610
+_08293D34: .4byte gUnknown_3007610
 	thumb_func_end rfu_setRecvBuffer
 
 	thumb_func_start rfu_NI_setSendData
@@ -3414,7 +3414,7 @@ rfu_UNI_setSendData: @ 0x08293D64
 	adds r0, r2, #3
 	b _08293D86
 	.align 2, 0
-_08293D80: .4byte 0x03007630
+_08293D80: .4byte gUnknown_3007630
 _08293D84:
 	adds r0, r2, #2
 _08293D86:
@@ -3458,7 +3458,7 @@ rfu_NI_CHILD_setSendGameName: @ 0x08293DA0
 	pop {r1}
 	bx r1
 	.align 2, 0
-_08293DD0: .4byte 0x03007630
+_08293DD0: .4byte gUnknown_3007630
 	thumb_func_end rfu_NI_CHILD_setSendGameName
 
 	thumb_func_start rfu_STC_setSendData_org
@@ -3486,7 +3486,7 @@ rfu_STC_setSendData_org: @ 0x08293DD4
 	ldr r0, _08293E04
 	b _08293FBE
 	.align 2, 0
-_08293E00: .4byte 0x03007630
+_08293E00: .4byte gUnknown_3007630
 _08293E04: .4byte 0x00000301
 _08293E08:
 	movs r0, #0xf
@@ -3552,7 +3552,7 @@ _08293E6A:
 	adds r1, #0xf
 	b _08293E86
 	.align 2, 0
-_08293E78: .4byte 0x0890EEA4
+_08293E78: .4byte gUnknown_890EEA4
 _08293E7C:
 	cmp r0, #0
 	bne _08293E88
@@ -3620,7 +3620,7 @@ _08293EC0:
 	b _08293F00
 	.align 2, 0
 _08293EF4: .4byte 0x04000208
-_08293EF8: .4byte 0x03007620
+_08293EF8: .4byte gUnknown_3007620
 _08293EFC:
 	movs r0, #1
 	strb r0, [r1]
@@ -3687,7 +3687,7 @@ _08293F4C:
 	strh r0, [r2]
 	b _08293FB4
 	.align 2, 0
-_08293F74: .4byte 0x03007620
+_08293F74: .4byte gUnknown_3007620
 _08293F78: .4byte 0x00008021
 _08293F7C:
 	movs r0, #0x10
@@ -3734,7 +3734,7 @@ _08293FBE:
 	pop {r1}
 	bx r1
 	.align 2, 0
-_08293FD0: .4byte 0x03007610
+_08293FD0: .4byte gUnknown_3007610
 _08293FD4: .4byte 0x00008024
 _08293FD8: .4byte 0x04000208
 	thumb_func_end rfu_STC_setSendData_org
@@ -3835,10 +3835,10 @@ _08294086:
 	strh r1, [r0]
 	b _08294132
 	.align 2, 0
-_08294090: .4byte 0x03007620
+_08294090: .4byte gUnknown_3007620
 _08294094: .4byte 0x00008020
 _08294098: .4byte 0x04000208
-_0829409C: .4byte 0x03007630
+_0829409C: .4byte gUnknown_3007630
 _082940A0:
 	cmp r3, #0x10
 	bne _0829412C
@@ -3855,7 +3855,7 @@ _082940B6:
 	ldr r0, _082940C4
 	b _08294134
 	.align 2, 0
-_082940BC: .4byte 0x03007610
+_082940BC: .4byte gUnknown_3007610
 _082940C0: .4byte 0x00008024
 _082940C4: .4byte 0x00000403
 _082940C8:
@@ -3910,7 +3910,7 @@ _082940F8:
 	b _08294132
 	.align 2, 0
 _08294124: .4byte 0x04000208
-_08294128: .4byte 0x03007630
+_08294128: .4byte gUnknown_3007630
 _0829412C:
 	movs r0, #0xc0
 	lsls r0, r0, #3
@@ -3962,7 +3962,7 @@ _08294154:
 	movs r0, #0x48
 	b _0829418E
 	.align 2, 0
-_08294180: .4byte 0x03007620
+_08294180: .4byte gUnknown_3007620
 _08294184: .4byte 0x04000208
 _08294188: .4byte 0x00008043
 _0829418C:
@@ -3989,7 +3989,7 @@ _082941AE:
 	pop {r1}
 	bx r1
 	.align 2, 0
-_082941B4: .4byte 0x03007630
+_082941B4: .4byte gUnknown_3007630
 _082941B8: .4byte 0x04000208
 	thumb_func_end rfu_NI_stopReceivingData
 
@@ -4019,7 +4019,7 @@ _082941D4:
 	ldr r0, _082941F0
 	b _08294248
 	.align 2, 0
-_082941E8: .4byte 0x03007610
+_082941E8: .4byte gUnknown_3007610
 _082941EC: .4byte 0x00008024
 _082941F0: .4byte 0x00000403
 _082941F4:
@@ -4034,7 +4034,7 @@ _082941F4:
 	ldrb r1, [r1, #0xf]
 	b _0829421A
 	.align 2, 0
-_08294208: .4byte 0x03007630
+_08294208: .4byte gUnknown_3007630
 _0829420C:
 	adds r0, r3, #0
 	adds r0, #0x10
@@ -4095,7 +4095,7 @@ _0829426E:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08294274: .4byte 0x03007610
+_08294274: .4byte gUnknown_3007610
 _08294278: .4byte 0x00008024
 	thumb_func_end rfu_UNI_readySendData
 
@@ -4116,7 +4116,7 @@ _08294292:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08294298: .4byte 0x03007610
+_08294298: .4byte gUnknown_3007610
 	thumb_func_end rfu_UNI_clearRecvNewDataFlag
 
 	thumb_func_start rfu_REQ_sendData
@@ -4161,8 +4161,8 @@ _082942D8:
 	strb r0, [r1, #8]
 	b _082942F6
 	.align 2, 0
-_082942E8: .4byte 0x03007630
-_082942EC: .4byte 0x03007634
+_082942E8: .4byte gUnknown_3007630
+_082942EC: .4byte gUnknown_3007634
 _082942F0:
 	ldrb r0, [r1, #7]
 	adds r0, #1
@@ -4194,8 +4194,8 @@ _08294308:
 	bl STWI_send_DataTxREQ
 	b _082943D6
 	.align 2, 0
-_0829432C: .4byte 0x03007638
-_08294330: .4byte 0x08294489
+_0829432C: .4byte gUnknown_3007638
+_08294330: .4byte sub_08294488
 _08294334:
 	ldr r0, [r4]
 	adds r0, #0x68
@@ -4229,9 +4229,9 @@ _0829434C:
 	bl STWI_send_DataTxAndChangeREQ
 	b _082943D6
 	.align 2, 0
-_08294378: .4byte 0x082943E1
-_0829437C: .4byte 0x03007638
-_08294380: .4byte 0x03007634
+_08294378: .4byte rfu_CB_sendData
+_0829437C: .4byte gUnknown_3007638
+_08294380: .4byte gUnknown_3007634
 _08294384:
 	ldr r0, _082943BC
 	ldr r0, [r0]
@@ -4260,10 +4260,10 @@ _0829439A:
 	bl _call_via_r1
 	b _082943D6
 	.align 2, 0
-_082943BC: .4byte 0x03007638
-_082943C0: .4byte 0x03007634
-_082943C4: .4byte 0x03007630
-_082943C8: .4byte 0x03007608
+_082943BC: .4byte gUnknown_3007638
+_082943C0: .4byte gUnknown_3007634
+_082943C4: .4byte gUnknown_3007630
+_082943C8: .4byte gUnknown_3007608
 _082943CC:
 	ldr r0, _082943DC
 	bl STWI_set_Callback_M
@@ -4273,7 +4273,7 @@ _082943D6:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_082943DC: .4byte 0x08294479
+_082943DC: .4byte rfu_CB_sendData2
 	thumb_func_end rfu_REQ_sendData
 
 	thumb_func_start rfu_CB_sendData
@@ -4350,9 +4350,9 @@ _0829444A:
 	bx r0
 	.align 2, 0
 _08294468: .4byte 0x00008020
-_0829446C: .4byte 0x03007610
-_08294470: .4byte 0x03007620
-_08294474: .4byte 0x03007630
+_0829446C: .4byte gUnknown_3007610
+_08294470: .4byte gUnknown_3007620
+_08294474: .4byte gUnknown_3007630
 	thumb_func_end rfu_CB_sendData
 
 	thumb_func_start rfu_CB_sendData2
@@ -4480,11 +4480,11 @@ _08294548:
 	add r8, r5
 	b _0829457C
 	.align 2, 0
-_0829455C: .4byte 0x03007630
-_08294560: .4byte 0x03007638
+_0829455C: .4byte gUnknown_3007630
+_08294560: .4byte gUnknown_3007638
 _08294564: .4byte 0x00008024
-_08294568: .4byte 0x03007620
-_0829456C: .4byte 0x03007610
+_08294568: .4byte gUnknown_3007620
+_0829456C: .4byte gUnknown_3007610
 _08294570:
 	adds r0, r7, r6
 	adds r0, #8
@@ -4546,9 +4546,9 @@ _082945CC:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_082945DC: .4byte 0x03007634
-_082945E0: .4byte 0x03007630
-_082945E4: .4byte 0x03007638
+_082945DC: .4byte gUnknown_3007634
+_082945E0: .4byte gUnknown_3007630
+_082945E4: .4byte gUnknown_3007638
 	thumb_func_end rfu_constructSendLLFrame
 
 	thumb_func_start rfu_STC_NI_constructLLSF
@@ -4618,8 +4618,8 @@ _08294652:
 	movs r5, #0
 	b _082946B4
 	.align 2, 0
-_08294664: .4byte 0x03007630
-_08294668: .4byte 0x0890EEA4
+_08294664: .4byte gUnknown_3007630
+_08294668: .4byte gUnknown_890EEA4
 _0829466C: .4byte 0x00008022
 _08294670:
 	ldr r0, _0829469C
@@ -4762,8 +4762,8 @@ _08294764:
 	strb r1, [r2, #0xe]
 	b _0829478E
 	.align 2, 0
-_08294774: .4byte 0x03007630
-_08294778: .4byte 0x03007638
+_08294774: .4byte gUnknown_3007630
+_08294778: .4byte gUnknown_3007638
 _0829477C: .4byte 0x00008022
 _08294780:
 	movs r0, #1
@@ -4813,7 +4813,7 @@ _082947CC:
 	movs r0, #0
 	b _08294870
 	.align 2, 0
-_082947D0: .4byte 0x03007610
+_082947D0: .4byte gUnknown_3007610
 _082947D4:
 	ldr r0, _0829484C
 	ldr r2, [r0]
@@ -4877,9 +4877,9 @@ _08294826:
 	movs r0, #0x10
 	b _08294864
 	.align 2, 0
-_0829484C: .4byte 0x03007630
-_08294850: .4byte 0x0890EEA4
-_08294854: .4byte 0x03007638
+_0829484C: .4byte gUnknown_3007630
+_08294850: .4byte gUnknown_890EEA4
+_08294854: .4byte gUnknown_3007638
 _08294858:
 	movs r0, #0x10
 	mov r1, r8
@@ -4930,9 +4930,9 @@ _082948A8:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_082948B0: .4byte 0x03007630
-_082948B4: .4byte 0x03007634
-_082948B8: .4byte 0x082948BD
+_082948B0: .4byte gUnknown_3007630
+_082948B4: .4byte gUnknown_3007634
+_082948B8: .4byte rfu_CB_recvData
 	thumb_func_end rfu_REQ_recvData
 
 	thumb_func_start rfu_CB_recvData
@@ -4967,9 +4967,9 @@ rfu_CB_recvData: @ 0x082948BC
 	bl rfu_STC_PARENT_analyzeRecvPacket
 	b _08294908
 	.align 2, 0
-_082948F8: .4byte 0x03007638
-_082948FC: .4byte 0x03007634
-_08294900: .4byte 0x03007630
+_082948F8: .4byte gUnknown_3007638
+_082948FC: .4byte gUnknown_3007634
+_08294900: .4byte gUnknown_3007630
 _08294904:
 	bl rfu_STC_CHILD_analyzeRecvPacket
 _08294908:
@@ -5048,9 +5048,9 @@ _08294980:
 	bx r0
 	.align 2, 0
 _08294998: .4byte 0x00008043
-_0829499C: .4byte 0x03007630
-_082949A0: .4byte 0x03007620
-_082949A4: .4byte 0x03007634
+_0829499C: .4byte gUnknown_3007630
+_082949A0: .4byte gUnknown_3007620
+_082949A4: .4byte gUnknown_3007634
 	thumb_func_end rfu_CB_recvData
 
 	thumb_func_start rfu_STC_PARENT_analyzeRecvPacket
@@ -5132,8 +5132,8 @@ _08294A28:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08294A38: .4byte 0x03007638
-_08294A3C: .4byte 0x03007634
+_08294A38: .4byte gUnknown_3007638
+_08294A3C: .4byte gUnknown_3007634
 	thumb_func_end rfu_STC_PARENT_analyzeRecvPacket
 
 	thumb_func_start rfu_STC_CHILD_analyzeRecvPacket
@@ -5180,8 +5180,8 @@ _08294A88:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08294A90: .4byte 0x03007638
-_08294A94: .4byte 0x03007634
+_08294A90: .4byte gUnknown_3007638
+_08294A94: .4byte gUnknown_3007634
 	thumb_func_end rfu_STC_CHILD_analyzeRecvPacket
 
 	thumb_func_start rfu_STC_analyzeLLSF
@@ -5213,8 +5213,8 @@ rfu_STC_analyzeLLSF: @ 0x08294A98
 	adds r0, r3, #0
 	b _08294CC6
 	.align 2, 0
-_08294ACC: .4byte 0x03007630
-_08294AD0: .4byte 0x0890EEA4
+_08294ACC: .4byte gUnknown_3007630
+_08294AD0: .4byte gUnknown_890EEA4
 _08294AD4:
 	movs r5, #0
 	movs r4, #0
@@ -5352,7 +5352,7 @@ _08294BD8: .4byte 0xFFFF00FF
 _08294BDC: .4byte 0xFF00FFFF
 _08294BE0: .4byte 0x00FFFFFF
 _08294BE4: .4byte 0x0000FFFF
-_08294BE8: .4byte 0x03007630
+_08294BE8: .4byte gUnknown_3007630
 _08294BEC:
 	mov r5, sb
 	ldrb r0, [r5, #3]
@@ -5376,7 +5376,7 @@ _08294C00:
 	ldrb r0, [r3, #4]
 	b _08294C42
 	.align 2, 0
-_08294C18: .4byte 0x03007620
+_08294C18: .4byte gUnknown_3007620
 _08294C1C:
 	adds r0, r4, #1
 	lsls r0, r0, #0x18
@@ -5411,7 +5411,7 @@ _08294C42:
 	bl rfu_STC_NI_receive_Sender
 	b _08294CC4
 	.align 2, 0
-_08294C5C: .4byte 0x03007630
+_08294C5C: .4byte gUnknown_3007630
 _08294C60:
 	ldrb r1, [r3, #2]
 	mov r2, sb
@@ -5476,7 +5476,7 @@ _08294CC6:
 	pop {r1}
 	bx r1
 	.align 2, 0
-_08294CD8: .4byte 0x03007630
+_08294CD8: .4byte gUnknown_3007630
 	thumb_func_end rfu_STC_analyzeLLSF
 
 	thumb_func_start rfu_STC_UNI_receive
@@ -5508,7 +5508,7 @@ rfu_STC_UNI_receive: @ 0x08294CDC
 	strh r0, [r5, #2]
 	b _08294D66
 	.align 2, 0
-_08294D10: .4byte 0x03007610
+_08294D10: .4byte gUnknown_3007610
 _08294D14: .4byte 0x00000701
 _08294D18:
 	ldrb r0, [r5, #7]
@@ -5568,8 +5568,8 @@ _08294D7A:
 	bx r0
 	.align 2, 0
 _08294D84: .4byte 0x00008042
-_08294D88: .4byte 0x03007638
-_08294D8C: .4byte 0x03007634
+_08294D88: .4byte gUnknown_3007638
+_08294D8C: .4byte gUnknown_3007634
 	thumb_func_end rfu_STC_UNI_receive
 
 	thumb_func_start rfu_STC_NI_receive_Sender
@@ -5681,7 +5681,7 @@ _08294E0A:
 	str r0, [r1]
 	b _08294E86
 	.align 2, 0
-_08294E5C: .4byte 0x03007620
+_08294E5C: .4byte gUnknown_3007620
 _08294E60: .4byte 0x00008022
 _08294E64: .4byte 0x00008021
 _08294E68: .4byte 0x00008023
@@ -5820,8 +5820,8 @@ _08294F56:
 _08294F68: .4byte 0x80230000
 _08294F6C: .4byte 0x00008020
 _08294F70: .4byte 0x04000208
-_08294F74: .4byte 0x03007634
-_08294F78: .4byte 0x03007620
+_08294F74: .4byte gUnknown_3007634
+_08294F78: .4byte gUnknown_3007620
 	thumb_func_end rfu_STC_NI_receive_Sender
 
 	thumb_func_start rfu_STC_NI_receive_Receiver
@@ -5875,8 +5875,8 @@ rfu_STC_NI_receive_Receiver: @ 0x08294F7C
 	strh r0, [r4, #0x34]
 	b _08295032
 	.align 2, 0
-_08294FDC: .4byte 0x03007620
-_08294FE0: .4byte 0x03007634
+_08294FDC: .4byte gUnknown_3007620
+_08294FE0: .4byte gUnknown_3007634
 _08294FE4: .4byte 0x00008042
 _08294FE8: .4byte 0x00008043
 _08294FEC:
@@ -6008,10 +6008,10 @@ _082950D2:
 	bx r0
 	.align 2, 0
 _082950E4: .4byte 0x00008041
-_082950E8: .4byte 0x03007638
+_082950E8: .4byte gUnknown_3007638
 _082950EC: .4byte 0x00008042
 _082950F0: .4byte 0x04000208
-_082950F4: .4byte 0x03007634
+_082950F4: .4byte gUnknown_3007634
 	thumb_func_end rfu_STC_NI_receive_Receiver
 
 	thumb_func_start rfu_STC_NI_initSlot_asRecvControllData
@@ -6031,7 +6031,7 @@ rfu_STC_NI_initSlot_asRecvControllData: @ 0x082950F8
 	adds r1, #0xf
 	b _08295120
 	.align 2, 0
-_08295114: .4byte 0x03007630
+_08295114: .4byte gUnknown_3007630
 _08295118:
 	movs r5, #2
 	adds r0, r4, #0
@@ -6063,7 +6063,7 @@ _08295120:
 	b _0829517E
 	.align 2, 0
 _08295150: .4byte 0x00000702
-_08295154: .4byte 0x03007634
+_08295154: .4byte gUnknown_3007634
 _08295158:
 	strh r3, [r2, #0x18]
 	ldrb r0, [r1]
@@ -6111,7 +6111,7 @@ rfu_STC_NI_initSlot_asRecvDataEntity: @ 0x08295188
 	adds r0, #4
 	b _08295202
 	.align 2, 0
-_082951A8: .4byte 0x03007630
+_082951A8: .4byte gUnknown_3007630
 _082951AC:
 	ldr r1, _082951F0
 	lsls r0, r5, #2
@@ -6146,9 +6146,9 @@ _082951AC:
 	bl rfu_STC_releaseFrame
 	b _08295234
 	.align 2, 0
-_082951F0: .4byte 0x03007620
-_082951F4: .4byte 0x03007634
-_082951F8: .4byte 0x03007630
+_082951F0: .4byte gUnknown_3007620
+_082951F4: .4byte gUnknown_3007634
+_082951F8: .4byte gUnknown_3007630
 _082951FC: .4byte 0x00000701
 _08295200:
 	ldr r0, [r2, #0x68]
@@ -6264,10 +6264,10 @@ _082952C6:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_082952CC: .4byte 0x03007630
+_082952CC: .4byte gUnknown_3007630
 _082952D0: .4byte 0x04000208
-_082952D4: .4byte 0x03007634
-_082952D8: .4byte 0x03007620
+_082952D4: .4byte gUnknown_3007634
+_082952D8: .4byte gUnknown_3007620
 	thumb_func_end rfu_NI_checkCommFailCounter
 
 	thumb_func_start rfu_REQ_noise
@@ -6281,6 +6281,5 @@ rfu_REQ_noise: @ 0x082952DC
 	pop {r0}
 	bx r0
 	.align 2, 0
-_082952F0: .4byte 0x082926C1
+_082952F0: .4byte rfu_STC_REQ_callback
 	thumb_func_end rfu_REQ_noise
-
