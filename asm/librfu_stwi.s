@@ -1,7 +1,7 @@
-.include "asm/macros.inc"
-.include "constants/constants.inc"
-.text
-.syntax unified
+    .include "asm/macros.inc"
+    .include "constants/constants.inc"
+	.text
+    .syntax unified
 
 	thumb_func_start STWI_init_all
 STWI_init_all: @ 0x08290FA0
@@ -27,9 +27,9 @@ STWI_init_all: @ 0x08290FA0
 	b _08290FE6
 	.align 2, 0
 _08290FC8: .4byte 0x040000D4
-_08290FCC: .4byte 0x08291ADC
+_08290FCC: .4byte IntrSIO32
 _08290FD0: .4byte 0x800004B0
-_08290FD4: .4byte 0x03007608
+_08290FD4: .4byte gUnknown_3007608
 _08290FD8: .4byte 0x00000A48
 _08290FDC:
 	ldr r0, _08291060
@@ -97,8 +97,8 @@ _08290FE6:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08291060: .4byte 0x08291ADC
-_08291064: .4byte 0x03007608
+_08291060: .4byte IntrSIO32
+_08291064: .4byte gUnknown_3007608
 _08291068: .4byte 0x04000134
 _0829106C: .4byte 0x00005003
 _08291070: .4byte 0x04000208
@@ -130,8 +130,8 @@ STWI_init_timer: @ 0x08291078
 	pop {r0}
 	bx r0
 	.align 2, 0
-_082910A4: .4byte 0x0829179D
-_082910A8: .4byte 0x03007608
+_082910A4: .4byte STWI_intr_timer
+_082910A8: .4byte gUnknown_3007608
 _082910AC: .4byte 0x04000208
 _082910B0: .4byte 0x04000200
 	thumb_func_end STWI_init_timer
@@ -219,7 +219,7 @@ _082910F4:
 	.align 2, 0
 _0829114C: .4byte 0x04000134
 _08291150: .4byte 0x000080A0
-_08291154: .4byte 0x03007608
+_08291154: .4byte gUnknown_3007608
 _08291158: .4byte 0x04000100
 _0829115C: .4byte 0x04000102
 _08291160: .4byte 0x000080A2
@@ -236,7 +236,7 @@ STWI_set_MS_mode: @ 0x08291168
 	strb r0, [r1, #0x14]
 	bx lr
 	.align 2, 0
-_08291178: .4byte 0x03007608
+_08291178: .4byte gUnknown_3007608
 	thumb_func_end STWI_set_MS_mode
 
 	thumb_func_start STWI_read_status
@@ -264,14 +264,14 @@ _0829119C:
 	ldrh r0, [r0, #0x12]
 	b _082911D2
 	.align 2, 0
-_082911A4: .4byte 0x03007608
+_082911A4: .4byte gUnknown_3007608
 _082911A8:
 	ldr r0, _082911B0
 	ldr r0, [r0]
 	ldrb r0, [r0, #0x14]
 	b _082911D2
 	.align 2, 0
-_082911B0: .4byte 0x03007608
+_082911B0: .4byte gUnknown_3007608
 _082911B4:
 	ldr r0, _082911C0
 	ldr r0, [r0]
@@ -280,14 +280,14 @@ _082911B4:
 	lsrs r0, r0, #0x10
 	b _082911D2
 	.align 2, 0
-_082911C0: .4byte 0x03007608
+_082911C0: .4byte gUnknown_3007608
 _082911C4:
 	ldr r0, _082911CC
 	ldr r0, [r0]
 	ldrb r0, [r0, #6]
 	b _082911D2
 	.align 2, 0
-_082911CC: .4byte 0x03007608
+_082911CC: .4byte gUnknown_3007608
 _082911D0:
 	ldr r0, _082911D8
 _082911D2:
@@ -322,7 +322,7 @@ STWI_set_Callback_M: @ 0x082911F4
 	str r0, [r1, #0x18]
 	bx lr
 	.align 2, 0
-_082911FC: .4byte 0x03007608
+_082911FC: .4byte gUnknown_3007608
 	thumb_func_end STWI_set_Callback_M
 
 	thumb_func_start STWI_set_Callback_S
@@ -332,7 +332,7 @@ STWI_set_Callback_S: @ 0x08291200
 	str r0, [r1, #0x1c]
 	bx lr
 	.align 2, 0
-_08291208: .4byte 0x03007608
+_08291208: .4byte gUnknown_3007608
 	thumb_func_end STWI_set_Callback_S
 
 	thumb_func_start STWI_set_Callback_ID
@@ -342,7 +342,7 @@ STWI_set_Callback_ID: @ 0x0829120C
 	str r0, [r1, #0x20]
 	bx lr
 	.align 2, 0
-_08291214: .4byte 0x03007608
+_08291214: .4byte gUnknown_3007608
 	thumb_func_end STWI_set_Callback_ID
 
 	thumb_func_start STWI_poll_CommandEnd
@@ -367,7 +367,7 @@ _08291232:
 	pop {r1}
 	bx r1
 	.align 2, 0
-_0829123C: .4byte 0x03007608
+_0829123C: .4byte gUnknown_3007608
 	thumb_func_end STWI_poll_CommandEnd
 
 	thumb_func_start STWI_send_ResetREQ
@@ -387,7 +387,7 @@ _0829125A:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08291260: .4byte 0x03007608
+_08291260: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_ResetREQ
 
 	thumb_func_start STWI_send_LinkStatusREQ
@@ -407,7 +407,7 @@ _0829127E:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08291284: .4byte 0x03007608
+_08291284: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_LinkStatusREQ
 
 	thumb_func_start STWI_send_VersionStatusREQ
@@ -427,7 +427,7 @@ _082912A2:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_082912A8: .4byte 0x03007608
+_082912A8: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_VersionStatusREQ
 
 	thumb_func_start STWI_send_SystemStatusREQ
@@ -447,7 +447,7 @@ _082912C6:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_082912CC: .4byte 0x03007608
+_082912CC: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_SystemStatusREQ
 
 	thumb_func_start STWI_send_SlotStatusREQ
@@ -467,7 +467,7 @@ _082912EA:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_082912F0: .4byte 0x03007608
+_082912F0: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_SlotStatusREQ
 
 	thumb_func_start STWI_send_ConfigStatusREQ
@@ -487,7 +487,7 @@ _0829130E:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08291314: .4byte 0x03007608
+_08291314: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_ConfigStatusREQ
 
 	thumb_func_start STWI_send_GameConfigREQ
@@ -535,7 +535,7 @@ _08291364:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0829136C: .4byte 0x03007608
+_0829136C: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_GameConfigREQ
 
 	thumb_func_start STWI_send_SystemConfigREQ
@@ -570,7 +570,7 @@ _082913A6:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_082913AC: .4byte 0x03007608
+_082913AC: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_SystemConfigREQ
 
 	thumb_func_start STWI_send_SC_StartREQ
@@ -590,7 +590,7 @@ _082913CA:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_082913D0: .4byte 0x03007608
+_082913D0: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_SC_StartREQ
 
 	thumb_func_start STWI_send_SC_PollingREQ
@@ -610,7 +610,7 @@ _082913EE:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_082913F4: .4byte 0x03007608
+_082913F4: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_SC_PollingREQ
 
 	thumb_func_start STWI_send_SC_EndREQ
@@ -630,7 +630,7 @@ _08291412:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08291418: .4byte 0x03007608
+_08291418: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_SC_EndREQ
 
 	thumb_func_start STWI_send_SP_StartREQ
@@ -650,7 +650,7 @@ _08291436:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0829143C: .4byte 0x03007608
+_0829143C: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_SP_StartREQ
 
 	thumb_func_start STWI_send_SP_PollingREQ
@@ -670,7 +670,7 @@ _0829145A:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08291460: .4byte 0x03007608
+_08291460: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_SP_PollingREQ
 
 	thumb_func_start STWI_send_SP_EndREQ
@@ -690,7 +690,7 @@ _0829147E:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08291484: .4byte 0x03007608
+_08291484: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_SP_EndREQ
 
 	thumb_func_start STWI_send_CP_StartREQ
@@ -716,7 +716,7 @@ _082914AC:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_082914B4: .4byte 0x03007608
+_082914B4: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_CP_StartREQ
 
 	thumb_func_start STWI_send_CP_PollingREQ
@@ -736,7 +736,7 @@ _082914D2:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_082914D8: .4byte 0x03007608
+_082914D8: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_CP_PollingREQ
 
 	thumb_func_start STWI_send_CP_EndREQ
@@ -756,7 +756,7 @@ _082914F6:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_082914FC: .4byte 0x03007608
+_082914FC: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_CP_EndREQ
 
 	thumb_func_start STWI_send_DataTxREQ
@@ -795,7 +795,7 @@ _0829153E:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08291544: .4byte 0x03007608
+_08291544: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_DataTxREQ
 
 	thumb_func_start STWI_send_DataTxAndChangeREQ
@@ -834,7 +834,7 @@ _08291586:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0829158C: .4byte 0x03007608
+_0829158C: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_DataTxAndChangeREQ
 
 	thumb_func_start STWI_send_DataRxREQ
@@ -854,7 +854,7 @@ _082915AA:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_082915B0: .4byte 0x03007608
+_082915B0: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_DataRxREQ
 
 	thumb_func_start STWI_send_MS_ChangeREQ
@@ -874,7 +874,7 @@ _082915CE:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_082915D4: .4byte 0x03007608
+_082915D4: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_MS_ChangeREQ
 
 	thumb_func_start STWI_send_DataReadyAndChangeREQ
@@ -896,7 +896,7 @@ STWI_send_DataReadyAndChangeREQ: @ 0x082915D8
 	strb r3, [r0, #4]
 	b _0829161A
 	.align 2, 0
-_082915FC: .4byte 0x03007608
+_082915FC: .4byte gUnknown_3007608
 _08291600:
 	ldr r2, _08291624
 	ldr r1, [r2]
@@ -918,7 +918,7 @@ _0829161E:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08291624: .4byte 0x03007608
+_08291624: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_DataReadyAndChangeREQ
 
 	thumb_func_start STWI_send_DisconnectedAndChangeREQ
@@ -953,7 +953,7 @@ _0829165E:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08291664: .4byte 0x03007608
+_08291664: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_DisconnectedAndChangeREQ
 
 	thumb_func_start STWI_send_ResumeRetransmitAndChangeREQ
@@ -973,7 +973,7 @@ _08291682:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08291688: .4byte 0x03007608
+_08291688: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_ResumeRetransmitAndChangeREQ
 
 	thumb_func_start STWI_send_DisconnectREQ
@@ -999,7 +999,7 @@ _082916B0:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_082916B8: .4byte 0x03007608
+_082916B8: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_DisconnectREQ
 
 	thumb_func_start STWI_send_TestModeREQ
@@ -1029,7 +1029,7 @@ _082916E8:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_082916F0: .4byte 0x03007608
+_082916F0: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_TestModeREQ
 
 	thumb_func_start STWI_send_CPR_StartREQ
@@ -1062,7 +1062,7 @@ _08291726:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0829172C: .4byte 0x03007608
+_0829172C: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_CPR_StartREQ
 
 	thumb_func_start STWI_send_CPR_PollingREQ
@@ -1082,7 +1082,7 @@ _0829174A:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08291750: .4byte 0x03007608
+_08291750: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_CPR_PollingREQ
 
 	thumb_func_start STWI_send_CPR_EndREQ
@@ -1102,7 +1102,7 @@ _0829176E:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08291774: .4byte 0x03007608
+_08291774: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_CPR_EndREQ
 
 	thumb_func_start STWI_send_StopModeREQ
@@ -1122,7 +1122,7 @@ _08291792:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08291798: .4byte 0x03007608
+_08291798: .4byte gUnknown_3007608
 	thumb_func_end STWI_send_StopModeREQ
 
 	thumb_func_start STWI_intr_timer
@@ -1139,7 +1139,7 @@ STWI_intr_timer: @ 0x0829179C
 	beq _082917D0
 	b _082917F8
 	.align 2, 0
-_082917B4: .4byte 0x03007608
+_082917B4: .4byte gUnknown_3007608
 _082917B8:
 	cmp r0, #3
 	beq _082917DA
@@ -1203,7 +1203,7 @@ STWI_set_timer: @ 0x08291800
 	beq _08291846
 	b _08291884
 	.align 2, 0
-_08291830: .4byte 0x03007608
+_08291830: .4byte gUnknown_3007608
 _08291834: .4byte 0x04000100
 _08291838: .4byte 0x04000208
 _0829183C:
@@ -1287,7 +1287,7 @@ STWI_stop_timer: @ 0x082918AC
 	strh r1, [r0]
 	bx lr
 	.align 2, 0
-_082918CC: .4byte 0x03007608
+_082918CC: .4byte gUnknown_3007608
 _082918D0: .4byte 0x04000100
 _082918D4: .4byte 0x04000102
 	thumb_func_end STWI_stop_timer
@@ -1316,7 +1316,7 @@ STWI_init: @ 0x082918D8
 	b _08291956
 	.align 2, 0
 _08291904: .4byte 0x04000208
-_08291908: .4byte 0x03007608
+_08291908: .4byte gUnknown_3007608
 _0829190C:
 	ldr r4, _08291938
 	ldr r2, [r4]
@@ -1340,7 +1340,7 @@ _0829190C:
 	bl _call_via_r2
 	b _08291956
 	.align 2, 0
-_08291938: .4byte 0x03007608
+_08291938: .4byte gUnknown_3007608
 _0829193C:
 	ldrb r0, [r2, #0x14]
 	cmp r0, #0
@@ -1450,7 +1450,7 @@ STWI_start_Command: @ 0x082919B0
 	pop {r1}
 	bx r1
 	.align 2, 0
-_08291A08: .4byte 0x03007608
+_08291A08: .4byte gUnknown_3007608
 _08291A0C: .4byte 0x99660000
 _08291A10: .4byte 0x04000120
 _08291A14: .4byte 0x04000208
@@ -1473,7 +1473,7 @@ STWI_restart_Command: @ 0x08291A24
 	bl STWI_start_Command
 	b _08291A9A
 	.align 2, 0
-_08291A3C: .4byte 0x03007608
+_08291A3C: .4byte gUnknown_3007608
 _08291A40:
 	ldrb r0, [r2, #6]
 	cmp r0, #0x27
@@ -1554,8 +1554,7 @@ STWI_reset_ClockCounter: @ 0x08291AA4
 	movs r0, #0
 	bx lr
 	.align 2, 0
-_08291AD0: .4byte 0x03007608
+_08291AD0: .4byte gUnknown_3007608
 _08291AD4: .4byte 0x04000120
 _08291AD8: .4byte 0x00005003
 	thumb_func_end STWI_reset_ClockCounter
-

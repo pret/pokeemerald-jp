@@ -117,6 +117,7 @@ _0828D684:
 	bgt _0828D684
 	add r0, pc, #0x2f
 	bx r0
+	.thumb
 _0828D6C8:
 	movs r0, #0
 	mov r1, r8
@@ -441,6 +442,7 @@ _0828D9F4:
 	ldr r8, [sp]
 	add r0, pc, #1
 	bx r0
+	.thumb
 _0828DA00:
 	ldr r0, [sp, #4]
 	subs r0, #1
@@ -460,7 +462,7 @@ _0828DA0A:
 	pop {r3}
 	arm_func_end sub_0828D804
 
-	thumb_func_start sub_0828DA1E
+	non_word_aligned_thumb_func_start sub_0828DA1E
 sub_0828DA1E: @ 0x0828DA1E
 	bx r3
 	.align 2, 0
@@ -819,7 +821,7 @@ ld_r3_tp_adr_i: @ 0x0828DE08
 	ldr r2, [r1, #0x40]
 	thumb_func_end ld_r3_tp_adr_i
 
-	thumb_func_start sub_0828DE0A
+	non_word_aligned_thumb_func_start sub_0828DE0A
 sub_0828DE0A: @ 0x0828DE0A
 	adds r3, r2, #1
 	str r3, [r1, #0x40]

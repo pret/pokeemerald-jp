@@ -1951,9 +1951,6 @@ _0817DA60:
 	lsls r3, r3, #0x1a
 	lsrs r3, r3, #0x1e
 	movs r0, #9
-	thumb_func_end sub_0817D9BC
-
-	thumb_func_start sub_0817DA6E
 sub_0817DA6E: @ 0x0817DA6E
 	movs r1, #4
 	bl AddMovePoints
@@ -2605,7 +2602,7 @@ _0817DF52:
 	pop {r0}
 	bx r0
 	.align 2, 0
-	thumb_func_end sub_0817DA6E
+	thumb_func_end sub_0817D9BC
 
 	thumb_func_start sub_0817DF64
 sub_0817DF64: @ 0x0817DF64
